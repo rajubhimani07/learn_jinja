@@ -1,8 +1,9 @@
-{% for line in file_data.split('\n') %}
-{{-line-}}
-{{-'\n'-}}
-{%continue%}
-{%- for data in line.split(',') -%}
-    {{-data + ','-}}
-{% endfor %}
-{% endfor %}
+{%- set ns = namespace(tmp='') -%}
+{%- for line in file_data.split('\n') -%}
+    {%- set ns.tmp = ''-%}
+    {%- for data in line.split(',') -%}
+        {%- set ns.tmp = ns.tmp + data + ','-%}
+    {%- endfor -%}
+    {{- ns.tmp[:-1] -}}
+    {{- '\n' -}}
+{%- endfor -%}
