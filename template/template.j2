@@ -1,5 +1,8 @@
-{% for file in file_data.split('\n') %}
-    {%- for data in file.split(',') -%}
-        {{-data + ','-}}
-    {% endfor %}
+{% for line in file_data.split('\n') %}
+{{-line-}}
+{{-'\n'-}}
+{%continue%}
+{%- for data in line.split(',') -%}
+    {{-data + ','-}}
+{% endfor %}
 {% endfor %}
